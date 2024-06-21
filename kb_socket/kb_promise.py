@@ -5,7 +5,7 @@ from time import sleep
 
 
 class Promise(BasePromise):
-    is_executor: bool
+    is_executor: bool = None
 
     def __init__(self, executor: Optional[Callable[[Callable[[T], None],
                                                     Callable[[Exception],
@@ -15,11 +15,10 @@ class Promise(BasePromise):
         self.is_executor = executor is not None
         super().__init__(executor, scheduler)
 
-    @classmethod
     def resolve(cls, obj):
         # type: (T) -> Promise[T]
         if not cls.is_thenable(obj):
-            if cls.is_executor:
+            if not cls.is_executor:
                 ret = cls
             else:
                 ret = cls()  # type: Promise

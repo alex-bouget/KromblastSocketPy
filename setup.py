@@ -3,7 +3,7 @@ from pathlib import Path
 
 setup(
     name="kromblast-socket",
-    version="0.3",
+    version="0.3.1",
     description="Connect to a Kromblast socket server",
     long_description=Path(__file__).parent.joinpath("README.md").read_text(),
     long_description_content_type="text/markdown",
